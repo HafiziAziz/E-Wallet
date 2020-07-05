@@ -87,11 +87,11 @@ if ($ewallet_provider = "Touch n Go Digital") {
     $request = array( "request"   => array( "head" => $req_header, "body" => $req_body),);
 
     # Signature to TNG
-    $MOLPay_TnGD_Priv  = file_get_contents("/etc/pki/tls/certs/TnG/".$cert); // key exchange between  payment gateway and provider
+    $PG_TnGD_Priv  = file_get_contents("/etc/pki/tls/certs/TnG/".$cert); // key exchange between  payment gateway and provider
     $algo = "RSA-SHA256"; // hashing algo
     $signature = array("head" => $req_header, "body" => $req_body);
     $encoded_signature = json_encode($signature,1);
-    openssl_sign($encoded_signature, $binary_signature, $MOLPay_TnGD_Priv, $algo);
+    openssl_sign($encoded_signature, $binary_signature, $PG_TnGD_Priv, $algo);
     $digital_signature = base64_encode($binary_signature);
     $request['signature'] = $digital_signature;
     $req_TNG = json_encode($request, JSON_UNESCAPED_SLASHES);
@@ -179,7 +179,7 @@ if (curl_errno( $ch ) || empty($response)) {
         // Send Alert to internal
     } else {
         // Send Alert to internal
-        mail( "email", "[REQUEST] TNGD Payment API ERROR!!!", print_r( $st,1 ) );
+        mail( "email", "[REQUEST] ".$ewallet_provider." Payment API ERROR!!!", print_r( $st,1 ) );
     }
 
     // Send Alert to merchant
