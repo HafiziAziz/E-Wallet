@@ -84,7 +84,7 @@ function inquiry_TnGD($pg_transactionid, $partner_clientId, $partner_clientSecre
     $request['signature'] = $digital_signature;
     $headers[] = "Content-Type: application/json";
     $req_TNG = json_encode($request, JSON_UNESCAPED_SLASHES);
-    $response = Fn_cURL($partner_url, $method, $headers, $req_TNG);
+    $response = Fn_cURL($partner_url, "POST", $headers, $req_TNG);
     return $response;
 }
 
@@ -133,7 +133,7 @@ function inquiry_Alipay($partner_id, $pg_transactionid, $partner_key, $partner_u
 
     $partner_url = $partner_url."?".implode("&", $query_string)."&sign=".$alipay_sign."&sign_type=MD5";
     $header[] = "Content-Type: text/x-www-form-urlencoded";
-    $response = Fn_cURL($partner_url, $method, $headers);
+    $response = Fn_cURL($partner_url, "GET", $headers);
     return $response;
 }
 
