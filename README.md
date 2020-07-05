@@ -1,7 +1,7 @@
 ## Malaysia E-wallet
 
 # Overview
-+ This code basically skeleton of major ewallet in Malaysia. Other type of ewallet might be different in term of hashing and encryption. but the flow and structure mostly same.
++ This code basically skeleton structure of major ewallet in Malaysia. Other type of ewallet might be different in term of hashing and encryption. but the flow and structure mostly same.
 
 # Functionalities
 + Payment - where the financial transaction occur.
